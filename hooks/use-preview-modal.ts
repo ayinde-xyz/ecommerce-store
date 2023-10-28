@@ -1,17 +1,17 @@
-import { Product } from "@prisma/client";
+import { ProductWithImages } from "@/types";
 import { create } from "zustand";
 
 interface PreviewModalStore {
   isOpen: boolean;
-  data?: Product;
-  onOpen: (data: Product) => void;
+  data?: ProductWithImages;
+  onOpen: (data: ProductWithImages) => void;
   onClose: () => void;
 }
 
 const usePreviewModal = create<PreviewModalStore>((set) => ({
   isOpen: false,
   data: undefined,
-  onOpen: (data: Product) => set({ isOpen: true, data }),
+  onOpen: (data: ProductWithImages) => set({ data: data, isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }));
 

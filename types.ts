@@ -1,4 +1,5 @@
 import { Prisma, Product } from "@prisma/client";
+import getProduct from "./actions/get-product";
 
 export interface Billboard {
   id: string;
