@@ -1,17 +1,14 @@
-import { Color } from "@prisma/client";
-import prismadb from "@/lib/prismadb";
+import { Color } from "@/types";
+
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/colors`;
 
 const getColors = async (): Promise<Color[]> => {
-  const colors = await prismadb.color.findMany({
-    where: { storeId: "0f38adb8-90ae-4f18-92cc-f06e3166d56c" },
-    orderBy: { createdAt: "desc" },
-  });
+  const res = await fetch(URL);
 
-  return colors;
+  return res.json();
 };
 
 export default getColors;
-
 // const URL = `${process.env.NEXT_PUBLIC_API_URL}/categories`;
 
 // const URL = `${process.env.NEXT_PUBLIC_API_URL}/categories`;

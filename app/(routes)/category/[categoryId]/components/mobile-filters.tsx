@@ -3,7 +3,7 @@
 import Button from "@/components/ui/button";
 import IconButton from "@/components/ui/icon-button";
 import { Dialog } from "@headlessui/react";
-import { Color, Size } from "@prisma/client";
+import { Color, Size } from "@/types";
 import { Plus, X } from "lucide-react";
 import { useState } from "react";
 import Filter from "./filter";

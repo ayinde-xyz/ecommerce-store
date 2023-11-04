@@ -1,15 +1,11 @@
-import { Product } from "@prisma/client";
-import prismadb from "@/lib/prismadb";
+import { Product } from "@/types";
 
-// const URL = `${process.env.NEXT_PUBLIC_API_URL}/categories`;
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
 
-const getProduct = async (id: string) => {
-  const products = await prismadb.product.findUnique({
-    where: { id: id },
-    include: { category: true, size: true, color: true, images: true },
-  });
+const getProduct = async (id: string): Promise<Product> => {
+  const res = await fetch(`${URL}/${id}`);
 
-  return products;
+  return res.json();
 };
 
 export default getProduct;

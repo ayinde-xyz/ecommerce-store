@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Image as ImageType } from "@prisma/client";
+import { Image as ImageType } from "@/types";
 import { Tab } from "@headlessui/react";
 import GalleryTab from "./gallery-tab";
 

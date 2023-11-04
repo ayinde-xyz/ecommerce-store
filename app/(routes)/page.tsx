@@ -1,15 +1,14 @@
 import getBillboard from "@/actions/get-billboard";
-import { getProducts } from "@/actions/get-products";
+import getProducts from "@/actions/get-products";
 import Billboard from "@/components/billboard";
 import ProductList from "@/components/product-list";
 import Container from "@/components/ui/container";
-import { Product } from "@prisma/client";
 
 export const revalidate = 0;
 
-const HomePage: React.FC<Product> = async () => {
-  const billboard = await getBillboard();
-  const products = await getProducts();
+const HomePage = async () => {
+  const billboard = await getBillboard("333c5116-d0bb-443e-9b21-5fa4c1b88852");
+  const products = await getProducts({ isFeatured: true });
 
   return (
     <Container>

@@ -1,13 +1,11 @@
-import { Size } from "@prisma/client";
-import prismadb from "@/lib/prismadb";
+import { Size } from "@/types";
+
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/sizes`;
 
 const getSizes = async (): Promise<Size[]> => {
-  const sizes = await prismadb.size.findMany({
-    where: { storeId: "0f38adb8-90ae-4f18-92cc-f06e3166d56c" },
-    orderBy: { createdAt: "desc" },
-  });
+  const res = await fetch(URL);
 
-  return sizes;
+  return res.json();
 };
 
 export default getSizes;

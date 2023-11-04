@@ -1,14 +1,11 @@
-import { Billboard } from "@prisma/client";
-import prismadb from "@/lib/prismadb";
+import { Billboard } from "@/types";
 
-// const URL = `${process.env.NEXT_PUBLIC_API_URL}/categories`;
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/billboards`;
 
-const getBillboard = async (): Promise<Billboard | null> => {
-  const billboard = await prismadb.billboard.findUnique({
-    where: { id: "333c5116-d0bb-443e-9b21-5fa4c1b88852" },
-  });
+const getBillboard = async (id: string): Promise<Billboard> => {
+  const res = await fetch(`${URL}/${id}`);
 
-  return billboard;
+  return res.json();
 };
 
 export default getBillboard;

@@ -1,9 +1,8 @@
-import { Billboard as BillboardType } from "@prisma/client";
+import { Billboard } from "@/types";
 
 interface BillboardProps {
-  data: BillboardType | undefined | null;
+  data: Billboard;
 }
-
 const Billboard: React.FC<BillboardProps> = ({ data }) => {
   // console.log(data);
   // console.log(data?.imageUrl);

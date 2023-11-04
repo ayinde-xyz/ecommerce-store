@@ -2,10 +2,9 @@
 
 import Button from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Color, Size } from "@prisma/client";
+import { Color, Size } from "@/types";
 import { useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
-import React from "react";
 
 interface FilterProps {
   data: (Size | Color)[];
@@ -26,6 +25,7 @@ const Filter: React.FC<FilterProps> = ({ data, name, valueKey }) => {
       ...current,
       [valueKey]: id,
     };
+    console.log(query);
 
     if (current[valueKey] === id) {
       query[valueKey] = null;

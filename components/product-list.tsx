@@ -1,11 +1,11 @@
 import NoResults from "./ui/no-results";
 import ProductCard from "./ui/product-card";
 
-import { ProductWithImages } from "@/types";
+import { Product } from "@/types";
 
 interface ProductListProps {
   title: string;
-  products: ProductWithImages[];
+  products: Product[];
 }
 
 const ProductList: React.FC<ProductListProps> = ({ title, products }) => {

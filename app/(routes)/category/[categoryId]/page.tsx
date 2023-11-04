@@ -1,6 +1,6 @@
-import { getCategory } from "@/actions/get-categories";
+import getCategory from "@/actions/get-category";
 import getColors from "@/actions/get-colors";
-import getIdProducts from "@/actions/get-products";
+import getProducts from "@/actions/get-products";
 import getSizes from "@/actions/get-sizes";
 import Billboard from "@/components/billboard";
 import Container from "@/components/ui/container";
@@ -25,20 +25,23 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
   params,
   searchParams,
 }) => {
-  const products = await getIdProducts({
+  const products = await getProducts({
     categoryId: params.categoryId,
     colorId: searchParams.colorId,
     sizeId: searchParams.sizeId,
   });
 
+  // console.log(products);
+
   const sizes = await getSizes();
   const colors = await getColors();
   const category = await getCategory(params.categoryId);
+  // console.log(category);
 
   return (
     <div className="bg-white">
       <Container>
-        <Billboard data={category?.billboard}></Billboard>
+        <Billboard data={category.billboard} />
       </Container>
       <div className="px-4 sm:px-6 lg:px-8 pb-24">
         <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">

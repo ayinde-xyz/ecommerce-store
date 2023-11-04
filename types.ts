@@ -1,9 +1,22 @@
-import { Prisma, Product } from "@prisma/client";
-import getProduct from "./actions/get-product";
+export interface Product {
+  id: string;
+  category: Category;
+  name: string;
+  price: string;
+  isFeatured: boolean;
+  size: Size;
+  color: Color;
+  images: Image[];
+}
+
+export interface Image {
+  id: string;
+  url: string;
+}
 
 export interface Billboard {
   id: string;
-  name: string;
+  label: string;
   imageUrl: string;
 }
 
@@ -13,30 +26,14 @@ export interface Category {
   billboard: Billboard;
 }
 
-export type ProductColumn = {
+export interface Size {
   id: string;
   name: string;
-  price: string;
-  category: string;
-  size: string;
-  color: string;
-  isFeatured: boolean;
-  isArchived: boolean;
-  createdAt: string;
-};
+  value: string;
+}
 
-const productsWithImages = Prisma.validator<Prisma.ProductDefaultArgs>()({
-  include: { category: true, size: true, color: true, images: true },
-});
-
-export type ProductWithImages = Prisma.ProductGetPayload<
-  typeof productsWithImages
->;
-
-const categoryWithBillboard = Prisma.validator<Prisma.CategoryDefaultArgs>()({
-  include: { billboard: true },
-});
-
-export type CategoryWithBillboard = Prisma.CategoryGetPayload<
-  typeof categoryWithBillboard
->;
+export interface Color {
+  id: string;
+  name: string;
+  value: string;
+}
