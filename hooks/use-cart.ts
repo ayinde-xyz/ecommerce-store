@@ -3,11 +3,11 @@ import { toast } from "react-hot-toast";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 import { AlertTriangle } from "lucide-react";
-import { ProductWithImages } from "@/types";
+import { Product } from "@/types";
 
 interface CartStore {
-  items: ProductWithImages[];
-  addItem: (data: ProductWithImages) => void;
+  items: Product[];
+  addItem: (data: Product) => void;
   removeItem: (id: string) => void;
   removeAll: () => void;
 }
@@ -16,7 +16,7 @@ const useCart = create(
   persist<CartStore>(
     (set, get) => ({
       items: [],
-      addItem: (data: ProductWithImages) => {
+      addItem: (data: Product) => {
         const currentItems = get().items;
         const existingItem = currentItems.find((item) => item.id === data.id);
 
