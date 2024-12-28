@@ -4,15 +4,43 @@ import Gallery from "@/components/gallery";
 import Info from "@/components/info";
 import ProductList from "@/components/product-list";
 import Container from "@/components/ui/container";
+import { Metadata, ResolvingMetadata } from "next";
 
 interface ProductPageProps {
-  params: {
+  params: Promise<{
     productId: string;
+  }>;
+}
+
+export async function generateMetadata(
+  { params }: ProductPageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { productId } = await params;
+  const product = await getProduct(productId);
+
+  if (!product) {
+    return {
+      title: "Product Not Found",
+      description: "The product you are looking for does not exist.",
+    };
+  }
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: product.name,
+    description: `Shop ${product.name} from our collection of ${product.category.name}.`,
+    openGraph: {
+      images: [product.images[0].url, ...previousImages],
+    },
   };
 }
 
 const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
-  const product = await getProduct(params.productId);
+  const { productId } = await params;
+  const product = await getProduct(productId);
   const suggestedProducts = await getProducts({
     categoryId: product?.category?.id,
   });

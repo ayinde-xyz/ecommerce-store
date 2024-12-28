@@ -8,16 +8,43 @@ import Filter from "./components/filter";
 import NoResults from "@/components/ui/no-results";
 import ProductCard from "@/components/ui/product-card";
 import MobileFilters from "./components/mobile-filters";
+import { Metadata, ResolvingMetadata } from "next";
 
 export const revalidate = 0;
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     categoryId: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     colorId: string;
     sizeId: string;
+  }>;
+}
+
+export async function generateMetadata(
+  { params }: CategoryPageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { categoryId } = await params;
+  const category = await getCategory(categoryId);
+
+  if (!category) {
+    return {
+      title: "Category Not Found",
+      description: "The category you are looking for does not exist.",
+    };
+  }
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: `${category.name} Collection`,
+    description: `Shop ${category.name} from our collection of products.`,
+    openGraph: {
+      images: [category.billboard.imageUrl, ...previousImages],
+    },
   };
 }
 
@@ -25,17 +52,19 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
   params,
   searchParams,
 }) => {
+  const { categoryId } = await params;
+  const { colorId, sizeId } = await searchParams;
   const products = await getProducts({
-    categoryId: params.categoryId,
-    colorId: searchParams.colorId,
-    sizeId: searchParams.sizeId,
+    categoryId: categoryId,
+    colorId: colorId,
+    sizeId: sizeId,
   });
 
   // console.log(products);
 
   const sizes = await getSizes();
   const colors = await getColors();
-  const category = await getCategory(params.categoryId);
+  const category = await getCategory(categoryId);
   // console.log(category);
 
   return (

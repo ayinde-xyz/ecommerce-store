@@ -12,32 +12,40 @@ import { toast } from "react-hot-toast";
 const Summary = () => {
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
-  const removeAll = useCart((state) => state.removeAll);
+  const emptyCart = useCart((state) => state.emptyCart);
 
   useEffect(() => {
     if (searchParams.get("success")) {
       toast.success("Payment completed.");
-      removeAll();
+      emptyCart();
     }
 
     if (searchParams.get("canceled")) {
       toast.error("Something went wrong.");
     }
-  }, [searchParams, removeAll]);
+  }, [searchParams, emptyCart]);
 
   const totalPrice = items.reduce((total, item) => {
-    return total + Number(item.price);
+    return total + Number(item.price) * item.quantity;
   }, 0);
 
   const onCheckout = async () => {
+    const checkoutInfo = {
+      productsOrdered: items.map((item) => ({
+        id: item.id,
+        quantity: item.quantity,
+      })),
+    };
+
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
       {
-        productIds: items.map((item) => item.id),
+        ...checkoutInfo,
       }
     );
-
     window.location = response.data.url;
+
+    // console.log(response.productsOrdered.map((product) => product.id));
   };
 
   return (

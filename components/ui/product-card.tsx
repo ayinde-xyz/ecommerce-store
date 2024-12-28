@@ -23,7 +23,6 @@ const ProductCard: React.FC<ProductCard> = ({ product }) => {
   };
 
   const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
-    console.log(product);
     event.stopPropagation();
 
     previewModal.onOpen(product);

@@ -1,8 +1,15 @@
+const { withNextVideo } = require('next-video/process')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["res.cloudinary.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+    ],
   },
 };
 
-module.exports = nextConfig;
+module.exports = withNextVideo(nextConfig);
