@@ -27,13 +27,13 @@ export async function generateMetadata(
   }
 
   // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || [];
+  // const previousImages = (await parent).openGraph?.images || [];
 
   return {
     title: product.name,
     description: `Shop ${product.name} from our collection of ${product.category.name}.`,
     openGraph: {
-      images: [product.images[0].url, ...previousImages],
+      images: [product.images[0].url],
     },
   };
 }
