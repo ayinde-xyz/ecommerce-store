@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.searchenginejournal.com%2Fafter-launching-ecommerce-website%2F346778%2F&psig=AOvVaw02zUWXmlh0te3OGNzBfXoM&ust=1735481974037000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNDH4qzUyooDFQAAAAAdAAAAABAJ",
+        url: "https://www.searchenginejournal.com/wp-content/uploads/2020/03/20-free-things-you-need-to-do-after-launching-your-ecommerce-website-5e664bcb60da5.png",
         alt: "Built by Ayinde AbdurRahman",
       },
     ],
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     site: "@ayinde_xyz",
     creator: "@ayinde_xyz",
     images: {
-      url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.searchenginejournal.com%2Fafter-launching-ecommerce-website%2F346778%2F&psig=AOvVaw02zUWXmlh0te3OGNzBfXoM&ust=1735481974037000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNDH4qzUyooDFQAAAAAdAAAAABAJ",
+      url: "https://www.searchenginejournal.com/wp-content/uploads/2020/03/20-free-things-you-need-to-do-after-launching-your-ecommerce-website-5e664bcb60da5.png",
       alt: "Built by Ayinde AbdurRahman",
     },
   },
