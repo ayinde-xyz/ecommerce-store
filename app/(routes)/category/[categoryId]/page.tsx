@@ -45,9 +45,21 @@ export async function generateMetadata(
     openGraph: {
       title: `${category.name} Collection`,
       type: "website",
+      siteName: "Ecommerce Store",
       url: `https://${process.env.VERCEL_URL}/category/${category.id}`,
       description: `Shop ${category.name} from our collection of products.`,
       images: [category.billboard.imageUrl, ...previousImages],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${category.name} Collection`,
+      description: `Shop ${category.name} from our collection of products.`,
+      site: "@ayinde_xyz",
+      creator: "@ayinde_xyz",
+      images: {
+        url: category.billboard.imageUrl,
+        alt: "Built by Ayinde AbdurRahman",
+      },
     },
   };
 }

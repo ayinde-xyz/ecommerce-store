@@ -36,8 +36,20 @@ export async function generateMetadata(
       title: product.name,
       type: "website",
       url: `https://${process.env.VERCEL_URL}/product/${product.id}`,
+      siteName: "Ecommerce Store",
       description: `Shop ${product.name} from our collection of ${product.category.name}.`,
       images: [product.images[0].url],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.name,
+      description: `Shop ${product.name} from our collection of ${product.category.name}.`,
+      site: "@ayinde_xyz",
+      creator: "@ayinde_xyz",
+      images: {
+        url: product.images[0].url,
+        alt: "Built by Ayinde AbdurRahman",
+      },
     },
   };
 }
