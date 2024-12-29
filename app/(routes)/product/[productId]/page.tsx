@@ -33,6 +33,10 @@ export async function generateMetadata(
     title: product.name,
     description: `Shop ${product.name} from our collection of ${product.category.name}.`,
     openGraph: {
+      title: product.name,
+      type: "website",
+      url: `https://${process.env.VERCEL_URL}/product/${product.id}`,
+      description: `Shop ${product.name} from our collection of ${product.category.name}.`,
       images: [product.images[0].url],
     },
   };

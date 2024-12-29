@@ -13,7 +13,6 @@ export const metadata: Metadata = {
     title: "Ecommerce Store",
     description: "This is an ecommerce store built with Next.js and React.",
     siteName: "Ecommerce Store",
-
     images: [
       {
         url: "https://www.searchenginejournal.com/wp-content/uploads/2020/03/20-free-things-you-need-to-do-after-launching-your-ecommerce-website-5e664bcb60da5.png",
