@@ -3,8 +3,11 @@ import getProducts from "@/actions/get-products";
 import Billboard from "@/components/billboard";
 import ProductList from "@/components/product-list";
 import Container from "@/components/ui/container";
+import { metadata } from "@/lib/metadata";
 
 export const revalidate = 0;
+
+export { metadata };
 
 const HomePage = async () => {
   const billboard = await getBillboard("4b9069ef-9cbb-446c-9a41-b9ea22fb1ab9");

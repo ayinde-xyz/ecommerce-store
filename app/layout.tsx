@@ -4,11 +4,8 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import ModalProvider from "@/providers/modal-provider";
 import ToastProvider from "@/providers/toast-provider";
-import { metadata } from "@/lib/metadata";
 
 const font = Urbanist({ subsets: ["latin"] });
-
-export { metadata };
 
 export default function RootLayout({
   children,
