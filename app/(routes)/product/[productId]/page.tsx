@@ -46,10 +46,12 @@ export async function generateMetadata(
       description: `Shop ${product.name} from our collection of ${product.category.name}.`,
       site: "@ayinde_xyz",
       creator: "@ayinde_xyz",
-      images: {
-        url: product.images[0].url,
-        alt: "Built by Ayinde AbdurRahman",
-      },
+      images: [
+        {
+          url: product.images[0].url,
+          alt: "Built by Ayinde AbdurRahman",
+        },
+      ],
     },
   };
 }
